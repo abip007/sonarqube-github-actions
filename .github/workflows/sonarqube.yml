@@ -14,7 +14,7 @@ jobs:
     name: Build, Test & Analyze
     # Default: GitHub-hosted runner (SonarQube must be reachable from the internet, e.g. EC2).
     # Using local Docker SonarQube? Create repo variable RUNNER = self-hosted (see README Option B).
-    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}
+    runs-on: self-hosted
 
     steps:
       - name: Checkout code
