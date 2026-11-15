@@ -34,14 +34,16 @@ jobs:
           dotnet-version: "8.0.x"
 
       - name: Install SonarScanner for .NET
-        run: dotnet tool update --global dotnet-sonarscanner
+        # Install into the workspace instead of --global: on a self-hosted runner running as a
+        # service, the global tools folder (~/.dotnet/tools) is not on PATH.
+        run: dotnet tool update dotnet-sonarscanner --tool-path ./.sonar/scanner
 
       - name: Restore dependencies
         run: dotnet restore
 
       - name: SonarQube - begin analysis
         run: >
-          dotnet sonarscanner begin
+          ./.sonar/scanner/dotnet-sonarscanner begin
           /k:"${{ env.SONAR_PROJECT_KEY }}"
           /s:"${{ github.workspace }}/SonarQube.Analysis.xml"
           /d:sonar.host.url="${{ secrets.SONAR_HOST_URL }}"
@@ -57,4 +59,4 @@ jobs:
           --collect:"XPlat Code Coverage;Format=opencover"
 
       - name: SonarQube - end analysis (upload report)
-        run: dotnet sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+        run: ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"

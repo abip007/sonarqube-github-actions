@@ -4,3 +4,6 @@ TestResults/
 .sonarqube/
 .vs/
 *.user
+
+# SonarScanner installed by the workflow
+.sonar/
