@@ -87,7 +87,7 @@ dotnet test --collect:"XPlat Code Coverage;Format=opencover"
 
 1. Dashboard → **Create Project → Local project**
    - Project display name: `SonarQube GitHub Actions Demo`
-   - **Project key: `sonarqube-github-actions-demo`** (must match `SONAR_PROJECT_KEY` in the workflow)
+   - **Project key: `SonarQube-GitHub-Actions-Demo`** (must match `SONAR_PROJECT_KEY` in the workflow)
    - Main branch: `main` → **Next** → *Use the global setting* → **Create project**
 2. Analysis method → choose **With GitHub Actions**. SonarQube shows you the values you need.
 3. Generate a token:
@@ -101,7 +101,7 @@ dotnet test --collect:"XPlat Code Coverage;Format=opencover"
 
 | Setting | Value |
 |---|---|
-| `sonar.projectKey` | passed via `/k:` in the workflow (`sonarqube-github-actions-demo`) |
+| `sonar.projectKey` | passed via `/k:` in the workflow (`SonarQube-GitHub-Actions-Demo`) |
 | `sonar.host.url` | `http://localhost:9000`, overridden in CI by the `SONAR_HOST_URL` secret |
 | `sonar.token` (formerly `sonar.login`) | **never committed**; comes from the `SONAR_TOKEN` secret |
 | `sonar.cs.opencover.reportsPaths` | coverage file produced by coverlet |
@@ -149,7 +149,7 @@ git push
 ```
 Repo → **Actions** tab → open **SonarQube Analysis**. All steps should be green. The *end analysis* log should end with:
 ```
-ANALYSIS SUCCESSFUL, you can find the results at: http://<host>:9000/dashboard?id=sonarqube-github-actions-demo
+ANALYSIS SUCCESSFUL, you can find the results at: http://<host>:9000/dashboard?id=SonarQube-GitHub-Actions-Demo
 ```
 
 ## Step 7: Verify the Report

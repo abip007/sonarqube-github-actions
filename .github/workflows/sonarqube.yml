@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  SONAR_PROJECT_KEY: sonarqube-github-actions-demo # must match the key created in SonarQube
+  SONAR_PROJECT_KEY: SonarQube-GitHub-Actions-Demo # must match the key created in SonarQube
 
 jobs:
   sonarqube:
