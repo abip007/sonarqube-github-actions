@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  SonarScanner for .NET configuration
+  (the .NET equivalent of sonar-project.properties, which the .NET scanner does not support).
+
+  sonar.projectKey is passed on the command line (/k:) because the scanner requires it there.
+  sonar.host.url and sonar.token come from GitHub secrets - NEVER commit a real token here.
+  (sonar.token replaces the older, deprecated sonar.login property in SonarQube 10+.)
+-->
+<SonarQubeAnalysisProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                             xmlns="http://www.sonarsource.com/msbuild/integration/2015/1">
+
+  <!-- Overridden in CI by the SONAR_HOST_URL secret -->
+  <Property Name="sonar.host.url">http://localhost:9000</Property>
+  <!-- <Property Name="sonar.login">your-token</Property>  legacy name, do not commit -->
+
+  <Property Name="sonar.sourceEncoding">UTF-8</Property>
+
+  <!-- Code coverage produced by coverlet (OpenCover format) -->
+  <Property Name="sonar.cs.opencover.reportsPaths">**/TestResults/**/coverage.opencover.xml</Property>
+
+  <!-- Unit test results produced by dotnet test (trx logger) -->
+  <Property Name="sonar.cs.vstest.reportsPaths">**/TestResults/*.trx</Property>
+
+  <!-- Do not count test projects as source code -->
+  <Property Name="sonar.coverage.exclusions">tests/**</Property>
+</SonarQubeAnalysisProperties>
